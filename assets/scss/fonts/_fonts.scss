@@ -1,12 +1,12 @@
 @import "clear-sans";
 @import "tomorrow";
 @import "rubik";
-
-$fonts: $fontFamily-sans $fontFamily-serif $fontFamily-mono $fontFamily-headings $fontFamily-hero;
-
-@if contains($fonts, "'Clear Sans', sans-serif") {
-    @include clear-sans;
-}
+ 
+ $fonts: $fontFamily-sans $fontFamily-serif $fontFamily-mono $fontFamily-headings $fontFamily-hero;
+ 
+ @if contains($fonts, "'Clear Sans', sans-serif") {
+     @include clear-sans;
+ }
 
 $fontsTomorrow: $fontFamily-sans $fontFamily-serif $fontFamily-mono $fontFamily-headings $fontFamily-hero;
 
