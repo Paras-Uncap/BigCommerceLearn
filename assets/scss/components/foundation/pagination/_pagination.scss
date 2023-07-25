@@ -17,6 +17,7 @@
     font-size: 0; // 1
     margin-bottom: spacing("single");
     text-align: center;
+    float: right;
 
     .pagination-item { // 2
         display: inline-block;
@@ -39,7 +40,6 @@
         text-decoration: none;
         transition: $pagination-link-transition;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: $pagination-link-color-hover;
         }
@@ -54,7 +54,6 @@
     &.pagination-item--previous, // 1
     &.pagination-item--next { // 1
 
-        // scss-lint:disable NestingDepth, SelectorDepth
         > a {
             color: $pagination-item-previousNext-color;
 
@@ -71,7 +70,6 @@
 
 .pagination-item--previous,
 .pagination-item--next {
-
     .icon {
         height: remCalc(20px);
         margin-top: -(remCalc(2px));

@@ -31,10 +31,8 @@
     }
 
     .modal-close {
-        display: none;
-
         @include breakpoint("medium") {
-            display: block;
+            display: none;
         }
     }
 }
@@ -52,7 +50,6 @@
     label {
         display: inline;
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         input {
             display: block;
             padding-left: spacing("single");
@@ -63,7 +60,6 @@
             }
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         span {
             @include breakpoint("small") {
                 display: inline;
@@ -92,4 +88,8 @@
     font-size: fontSize("largest");
     margin: spacing("single") 0 0;
     text-align: center;
+}
+
+.search-nav {
+    position: relative;
 }

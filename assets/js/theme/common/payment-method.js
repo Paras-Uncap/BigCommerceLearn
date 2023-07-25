@@ -38,7 +38,6 @@ export const storeInstrument = ({
     vaultToken,
 }, {
     /* eslint-disable */
-    // Provider Name
     // Provider Info
     provider_id,
     currency_code,

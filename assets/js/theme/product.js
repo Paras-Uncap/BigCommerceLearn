@@ -6,7 +6,9 @@ import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
-import { classifyForm } from './common/form-utils';
+import rootsLoaded from './roots/product';
+import { classifyForm } from './common/utils/form-utils';
+import modalFactory from './global/modal';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -14,6 +16,7 @@ export default class Product extends PageManager {
         this.url = window.location.href;
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
         this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
+        this.reviewModal = modalFactory('#modal-review-form')[0];
     }
 
     onReady() {
@@ -34,11 +37,17 @@ export default class Product extends PageManager {
 
         videoGallery();
 
+        this.bulkPricingHandler();
+
         const $reviewForm = classifyForm('.writeReview-form');
-        const review = new Review($reviewForm);
+
+        if ($reviewForm.length === 0) return;
+
+        const review = new Review({ $reviewForm });
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation(this.context);
+            this.ariaDescribeReviewInputs($reviewForm);
         });
 
         $reviewForm.on('submit', () => {
@@ -49,9 +58,19 @@ export default class Product extends PageManager {
 
             return false;
         });
+        rootsLoaded();
 
         this.productReviewHandler();
-        this.bulkPricingHandler();
+    }
+
+    ariaDescribeReviewInputs($form) {
+        $form.find('[data-input]').each((_, input) => {
+            const $input = $(input);
+            const msgSpanId = `${$input.attr('name')}-msg`;
+
+            $input.siblings('span').attr('id', msgSpanId);
+            $input.attr('aria-describedby', msgSpanId);
+        });
     }
 
     productReviewHandler() {
@@ -59,6 +78,7 @@ export default class Product extends PageManager {
             this.$reviewLink.trigger('click');
         }
     }
+
     bulkPricingHandler() {
         if (this.url.indexOf('#bulk_pricing') !== -1) {
             this.$bulkPricingLink.trigger('click');

@@ -1,4 +1,5 @@
 {{#partial "page"}}
+<div class="container">
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
@@ -13,7 +14,7 @@
     <div class="account account--fixed">
 
         {{#if forms.address.error}}
-            {{> components/common/alert-error forms.address.error}}
+            {{> components/common/alert/alert-error forms.address.error}}
         {{/if}}
 
         <div class="account-body">
@@ -39,6 +40,6 @@
 
         </div>
     </div>
-
+</div>
 {{/partial}}
 {{> layout/base}}

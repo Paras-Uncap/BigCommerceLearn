@@ -1,5 +1,5 @@
 {{#partial "page"}}
-
+<div class="container">
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
     <h1 class="page-heading">{{lang 'account.orders.downloads.heading' number=downloads.order_id}}</h1>
     {{> components/account/navigation account_page='orders'}}
@@ -8,7 +8,7 @@
         <div class="account-body">
             <figure class="account-sidebar">
                 {{#each downloads.images}}
-                    <img src="{{getImage this}}" alt="{{../downloads.product_name}}" title="{{../downloads.product_name}}"/>    
+                    <img src="{{getImage this}}" alt="{{../downloads.product_name}}" title="{{../downloads.product_name}}"/>
                     <figcaption>{{../downloads.product_name}}</figcaption>
                 {{/each}}
             </figure>
@@ -53,6 +53,6 @@
 
         </div>
     </div>
-
+</div>
 {{/partial}}
 {{> layout/base}}

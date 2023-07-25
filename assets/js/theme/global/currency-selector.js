@@ -1,9 +1,8 @@
 import swal from './sweet-alert';
 import utils from '@bigcommerce/stencil-utils';
- 
+
 export default function (cartId) {
     function changeCurrency(url, currencyCode) {
-       
         $.ajax({
             url,
             contentType: 'application/json',
@@ -12,22 +11,16 @@ export default function (cartId) {
         }).done(() => {
             window.location.reload();
         }).fail((e) => {
-            swal({
+            swal.fire({
                 text: JSON.parse(e.responseText).error,
                 icon: 'warning',
                 showCancelButton: true,
             });
         });
     }
-    
- 
-    $(document.body).on('click', '.currencySelector', () => {
-        $('.currency-selection-list').toggleClass('active');
-    });
- 
-    $(document).on('click', '[data-cart-currency-switch-url]', function(event){
-        const currencySessionSwitcher = $(this).attr('href');
-        
+
+    $('[data-cart-currency-switch-url]').on('click', event => {
+        const currencySessionSwitcher = event.target.href;
         if (!cartId) {
             return;
         }
@@ -37,24 +30,23 @@ export default function (cartId) {
                 window.location.href = currencySessionSwitcher;
                 return;
             }
- 
+
             const showWarning = response.discounts.some(discount => discount.discountedAmount > 0) ||
                 response.coupons.length > 0 ||
                 response.lineItems.giftCertificates.length > 0;
- 
-            if (showWarning) {                
-                swal({
-                    text: $(this).data('warning'),
+
+            if (showWarning) {
+                swal.fire({
+                    text: $(event.target).data('warning'),
                     icon: 'warning',
                     showCancelButton: true,
-                }).then(result => { 
-                   
-                    if (result && result === true) {
-                        changeCurrency($(this).data('cart-currency-switch-url'), $(this).data('currency-code'));
+                }).then(result => {
+                    if (result.value && result.value === true) {
+                        changeCurrency($(event.target).data('cart-currency-switch-url'), $(event.target).data('currency-code'));
                     }
                 });
             } else {
-                changeCurrency($(this).data('cart-currency-switch-url'), $(this).data('currency-code'));
+                changeCurrency($(event.target).data('cart-currency-switch-url'), $(event.target).data('currency-code'));
             }
         });
     });

@@ -4,19 +4,17 @@ brands:
 
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
-<main class="page">
-  <div class="column">
-    <h1 class="page-heading">{{lang 'brand.label'}}</h1>
-    {{{region name="brands_below_header"}}}
-    <ul class="brandGrid">
-        {{#each brands}}
-            <li class="brand">
-                <article class="card {{#if alternate}}card--alternate{{/if}}">
-                    <figure class="card-figure {{#if image}}show-image{{else}}no-img{{/if}}">
-                        <a href="{{url}}">
-                            <div class="card-img-container">
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <main class="page">
+        <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+        {{{region name="brands_below_header"}}}
+        <div class="page-content-subcategories">
+            <ul class="navList">
+                {{#each brands}}
+                    <li class="navList-item">
+                        <a class="navList-action" href="{{url}}" alt="{{name}}" title="{{name}}">
+                            <div class="image-wrap{{#unless image}} image-placeholder{{/unless}}">
                                 {{> components/common/responsive-img
                                     image=image
                                     class="card-image"
@@ -25,20 +23,15 @@ brands:
                                     default_image=../theme_settings.default_image_brand
                                 }}
                             </div>
+                            <span>{{{name}}}</span>
                         </a>
-                    </figure>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="{{url}}">{{name}}</a>
-                        </h4>
-                    </div>
-                </article>
-            </li>
-        {{/each}}
-    </ul>
-    {{> components/common/paginator pagination.brands}}
-  </div>
-  {{{region name="brands_below_content"}}}
-</main>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{> components/common/paginator pagination.brands}}
+        {{{region name="brands_below_content"}}}
+    </main>
+</div>
 {{/partial}}
 {{> layout/base}}

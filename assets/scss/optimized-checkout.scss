@@ -18,17 +18,12 @@
 *:focus {
     outline-color: stencilColor("optimizedCheckout-colorFocus");
 }
-.checkoutHeader-heading{
-    .header-logo-text{
-        color: #fff;
-    }
-}
 
 .optimizedCheckout-header {
     background-color: stencilColor("optimizedCheckout-header-backgroundColor");
-    // scss-lint:disable StringQuotes
+    /* stylelint-disable function-url-quotes*/
     background-image: url(stencilImage('optimizedCheckout-backgroundImage', 'optimizedCheckout-backgroundImage-size'));
-    // scss-lint:enable StringQuotes
+    /* stylelint-enable */
     background-size: cover;
     border-color: stencilColor("optimizedCheckout-header-borderColor");
     color: stencilColor("optimizedCheckout-header-textColor");
@@ -53,8 +48,6 @@
     color: stencilColor("optimizedCheckout-headingPrimary-color");
     font-family: stencilFontFamily("optimizedCheckout-headingPrimary-font"), Arial, Helvetica, sans-serif;
     font-weight: stencilFontWeight("optimizedCheckout-headingPrimary-font");
-    font-size: 30px;
-    // margin-bottom: 20px;
 }
 
 .optimizedCheckout-headingSecondary {
@@ -207,16 +200,11 @@ a {
 .optimizedCheckout-orderSummary {
     background-color: stencilColor("optimizedCheckout-orderSummary-backgroundColor");
     border-color: stencilColor("optimizedCheckout-orderSummary-borderColor");
-    box-shadow: 0 1px 4px transparentize(stencilColor("optimizedCheckout-orderSummary-borderColor"), 0.4);
+    box-shadow: 0 4px 8px transparentize(stencilColor("optimizedCheckout-orderSummary-borderColor"), 0.5);
 }
 
 .optimizedCheckout-orderSummary-cartSection {
     border-color: stencilColor("optimizedCheckout-orderSummary-borderColor");
-    .cart-priceItem--total{
-      .cart-priceItem-value{
-        font-weight: 500;
-      }
-    }
 }
 
 .optimizedCheckout-checkoutStep {
@@ -392,30 +380,30 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
     color: stencilColor("optimizedCheckout-loadingToaster-textColor");
 }
 
-p{
-  font-size: 15px;
+.modal.modal--afterOpen.optimizedCheckout-contentPrimary{
+    visibility: visible !important;
+    display: block !important;
+    max-width: 100%;
+    overflow-y: scroll;
 }
-.orderConfirmation-section{
-  font-size: 15px;
+
+.checkoutHeader{
+    display: flex;
+    align-items: center;
 }
-.orderConfirmation{
-  @media only screen and (min-width: 767px) {
-    padding-bottom: 30px;
-  }
+
+// Roots Styles
+.checkoutHeader-logo{
+    display: block;
+    width: stencilNumber("logo_size");
 }
-.cartDrawer-body{
-  .cartDrawer-items{
-    @media only screen and (max-width: 767px) {
-        font-size: 20px;
-        margin-bottom: 10px !important;
+
+@media only screen and (max-width: 800px){
+    .checkoutHeader-logo{
+        display: block;
+        width: stencilNumber("logo_size_mobile");
     }
-  }
 }
-.cartDrawer-actions{
-  .cartDrawer-total{
-    @media only screen and (max-width: 767px) {
-      font-size: 20px;
-      margin-bottom: 0px !important;
-    }
-  }
-}
+
+@import "roots/mods";
+
